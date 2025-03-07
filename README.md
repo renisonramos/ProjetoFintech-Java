@@ -1,4 +1,4 @@
-# Repositório: JavaFintech
+# Repositório: ProjetoFintech-Java
 
 Este repositório contém o código Java da aplicação Fintech, que implementa a lógica de negócios e o backend do sistema.
 
