@@ -1,9 +1,12 @@
 package com.renisonRamos.fintech;
 
-import com.renisonRamos.fintech.model.Conta;
+
 import com.renisonRamos.fintech.model.Meta;
 import com.renisonRamos.fintech.model.Transacao;
 import com.renisonRamos.fintech.model.Usuario;
+import com.renisonRamos.fintech.model.ContaCorrente;
+import com.renisonRamos.fintech.model.ContaInvestimento;
+
 import java.util.Scanner;
 
 public class Main {
@@ -16,7 +19,9 @@ public class Main {
             System.out.println("1. Testar Usuario");
             System.out.println("2. Testar Conta");
             System.out.println("3. Testar Transacao");
-            System.out.println("4. Testar Meta");
+            System.out.println("4. Testar Investimento");
+            System.out.println("5. Testar Meta");
+
             System.out.println("0. Sair");
             System.out.print("Escolha uma opção: ");
             opcao = scanner.nextInt();
@@ -33,6 +38,9 @@ public class Main {
                     testarTransacao(scanner);
                     break;
                 case 4:
+                    testarInvestimento(scanner);
+                    break;
+                case 5:
                     testarMeta(scanner);
                     break;
                 case 0:
@@ -63,21 +71,26 @@ public class Main {
     static void testarConta(Scanner scanner) {
         System.out.print("Digite o ID do usuário: ");
         int idUsuario = scanner.nextInt();
-        scanner.nextLine();
+        scanner.nextLine(); //Consumir a quebra de linha
         System.out.print("Digite o saldo inicial: ");
         double saldo = scanner.nextDouble();
-        scanner.nextLine();
+        scanner.nextLine(); //Consumir a quebra de linha
+        System.out.print("Digite o limite da conta corrente: ");
+        double limite = scanner.nextDouble();
+        scanner.nextLine(); //Consumir a quebra de linha
 
-        Conta conta = new Conta(1, saldo, idUsuario);
-        System.out.println("Conta criada com sucesso!");
-        System.out.println("Saldo atual: R$ " + conta.getSaldo());
+        ContaCorrente contaCorrente = new ContaCorrente(1, saldo, idUsuario, limite); // Crie uma ContaCorrente
+        System.out.println("Conta corrente criada com sucesso!");
+        System.out.println("Saldo atual: R$ " + contaCorrente.getSaldo());
+        System.out.println("Limite atual: R$ " + contaCorrente.getLimite()); //Mostra o limite
+
         System.out.print("Deseja depositar? (s/n): ");
         String respostaDeposito = scanner.nextLine();
         if (respostaDeposito.equalsIgnoreCase("s")) {
             System.out.print("Digite o valor do depósito: ");
             double valorDeposito = scanner.nextDouble();
             scanner.nextLine();
-            conta.depositar(valorDeposito);
+            contaCorrente.depositar(valorDeposito);
         }
 
         System.out.print("Deseja sacar? (s/n): ");
@@ -86,9 +99,9 @@ public class Main {
             System.out.print("Digite o valor do saque: ");
             double valorSaque = scanner.nextDouble();
             scanner.nextLine();
-            conta.sacar(valorSaque);
+            contaCorrente.sacar(valorSaque);
         }
-        System.out.println("Saldo atual: R$ " + conta.getSaldo());
+        System.out.println("Saldo atual: R$ " + contaCorrente.getSaldo());
     }
 
     static void testarTransacao(Scanner scanner) {
@@ -105,6 +118,27 @@ public class Main {
 
         Transacao transacao = new Transacao(1, tipo, valor, idConta, data);
         transacao.registrarTransacao();
+    }
+
+
+    static void testarInvestimento(Scanner scanner) {
+        System.out.print("Digite o ID do usuário: ");
+        int idUsuario = scanner.nextInt();
+        scanner.nextLine();
+        System.out.print("Digite o saldo inicial: ");
+        double saldo = scanner.nextDouble();
+        scanner.nextLine();
+        System.out.print("Digite o rendimento mensal (em %): ");
+        double rendimento = scanner.nextDouble();
+        scanner.nextLine();
+
+        ContaInvestimento contaInv = new ContaInvestimento(1, saldo, idUsuario, rendimento);
+        System.out.println("Conta de investimento criada com sucesso!");
+        System.out.println("Saldo inicial: R$ " + contaInv.getSaldo());
+        System.out.println("Rendimento mensal: " + contaInv.getRendimentoMensal() + "%");
+
+        contaInv.calcularJuros();
+        System.out.println("Saldo após cálculo de juros: R$ " + contaInv.getSaldo());
     }
 
     static void testarMeta(Scanner scanner) {

@@ -6,7 +6,8 @@ public class Usuario {
     private String email;
     private String senha;
 
-    public Usuario() {}
+    public Usuario() {
+    }
 
     public Usuario(int id, String nome, String email, String senha) {
         this.id = id;
@@ -15,17 +16,17 @@ public class Usuario {
         this.senha = senha;
     }
 
+
     public void cadastrarUsuario() {
         System.out.println("Cadastrando usuário: " + nome);
     }
 
-    // Método getter para o atributo id
 
+    // Getters e setters
     public int getId() {
         return id;
     }
 
-    // ... getters e setters para os outros atributos ...
     public String getNome() {
         return nome;
     }

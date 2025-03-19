@@ -33,7 +33,7 @@ public class Meta {
     }
 
     public void atualizarProgresso(double valor) {
-        if (valor >= 0) { //Verifica se o valor adicionado é positivo
+        if (valor >= 0) { // Verifica se o valor adicionado é positivo
             this.valorAtual += valor;
             System.out.println("Atualizando progresso da meta: " + descricao + ". Valor adicionado: R$" + valor);
         } else {

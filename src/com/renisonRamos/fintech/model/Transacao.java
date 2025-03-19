@@ -8,7 +8,7 @@ public class Transacao {
     private int id;
     private String tipo; // "deposito", "saque", "transferencia"
     private double valor;
-    private int idConta; // ID da conta envolvida na transação
+    private int idConta; //
     private LocalDate data;
 
     public Transacao() {}
@@ -76,7 +76,7 @@ public class Transacao {
         this.data = data;
     }
 
-    //Método para setar a data usando uma String
+    //Metodo para setar a data usando uma String
     public void setData(String data) {
         try {
             this.data = LocalDate.parse(data, DateTimeFormatter.ISO_DATE);

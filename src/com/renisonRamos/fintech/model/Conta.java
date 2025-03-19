@@ -3,7 +3,7 @@ package com.renisonRamos.fintech.model;
 public class Conta {
     private int id;
     private double saldo;
-    private int idUsuario; // ID do usuário dono da conta
+    private int idUsuario;
 
     public Conta() {} // Construtor padrão
 
@@ -15,7 +15,7 @@ public class Conta {
 
     public void depositar(double valor) {
         System.out.println("Depositando R$" + valor + " na conta.");
-        if (valor > 0) { //Verificação básica para valores positivos.
+        if (valor > 0) { // Verificação para valores positivos.
             this.saldo += valor;
         } else {
             System.out.println("Valor de depósito inválido.");
@@ -24,7 +24,7 @@ public class Conta {
 
     public void sacar(double valor) {
         System.out.println("Sacando R$" + valor + " da conta.");
-        if (valor > 0 && this.saldo >= valor) { //Verificação para valores positivos e saldo suficiente.
+        if (valor > 0 && this.saldo >= valor) { // Verificação para valores positivos e saldo suficiente.
             this.saldo -= valor;
         } else {
             System.out.println("Saldo insuficiente ou valor inválido.");
